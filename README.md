@@ -252,3 +252,9 @@ sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/02
 >
 ```
 
+Задание 8
+
+```
+> var.test[0]["dev1"][0]
+"ssh -o 'StrictHostKeyChecking=no' ubuntu@62.84.124.117"
+```
