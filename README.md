@@ -231,3 +231,24 @@ vm_details = {
 
 
 
+Задание 7
+
+```
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/02/src$ terraform console
+> local.test_list[*]
+[
+  "develop",
+  "staging",
+  "production",
+]
+> local.test_list[1]
+"staging"
+> length(local.test_list)
+3
+> local.test_map["admin"]
+"John"
+> "${local.test_map["admin"]} is ${keys(local.test_map)[0]} for ${keys(local.servers)[1]} server based on OS ${local.servers.production["image"]} with ${local.servers.production["cpu"]} vcpu, ${local.servers.production["ram"]} ram and ${length(local.servers.production["disks"])} virtual disks"
+"John is admin for production server based on OS ubuntu-20-04 with 10 vcpu, 40 ram and 4 virtual disks"
+>
+```
+
