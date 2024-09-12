@@ -75,9 +75,9 @@ preemptible = true - Указывает что машина бедет откл�
 core_fraction = 5 - Устанавливает долю ревурсов ядра CPU
 
 
-```
+
 ![image](https://github.com/user-attachments/assets/c4af98ba-f5d7-401f-84b3-552fdcc3eff0)
-```
+
 
 
 Задача 3
