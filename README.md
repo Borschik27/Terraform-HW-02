@@ -116,3 +116,118 @@ vm_details = {
   }
 }
 ```
+
+Задача 5
+
+```
+ terraform apply -auto-approve
+data.yandex_compute_image.my_image: Reading...
+yandex_vpc_network.develop: Refreshing state... [id=enpr6r0hiok6giodjp67]
+data.yandex_compute_image.my_image: Read complete after 0s [id=fd8ivkpagklognhslumh]
+yandex_vpc_subnet.develop: Refreshing state... [id=e9bj126sulk5o2c1r3hf]
+yandex_vpc_subnet.develop-b: Refreshing state... [id=e2lvssbtehgpf9clav7r]
+yandex_compute_instance.vm: Refreshing state... [id=fhmb6r7k98jqpf49lomk]
+yandex_compute_instance.vm-b: Refreshing state... [id=epdu3tg2p63lu3kf0l9i]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are
+indicated with the following symbols:
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.vm will be updated in-place
+  ~ resource "yandex_compute_instance" "vm" {
+        id                        = "fhmb6r7k98jqpf49lomk"
+      ~ name                      = "netology-develop-platform-web" -> "hw-dev-u-cp-cp01"
+        # (14 unchanged attributes hidden)
+
+        # (6 unchanged blocks hidden)
+    }
+
+  # yandex_compute_instance.vm-b will be updated in-place
+  ~ resource "yandex_compute_instance" "vm-b" {
+        id                        = "epdu3tg2p63lu3kf0l9i"
+      ~ name                      = "netology-develop-platform-db" -> "hw-dev-u-db-db001"
+        # (14 unchanged attributes hidden)
+
+        # (6 unchanged blocks hidden)
+    }
+
+Plan: 0 to add, 2 to change, 0 to destroy.
+
+Changes to Outputs:
+  ~ vm_details = {
+      ~ vm   = {
+          ~ fqdn        = "netology-develop-platform-web.sypchik.local" -> "hw-dev-u-cp-cp01.sypchik.local"
+          ~ name        = "netology-develop-platform-web" -> "hw-dev-u-cp-cp01"
+            # (1 unchanged attribute hidden)
+        }
+      ~ vm-b = {
+          ~ fqdn        = "netology-develop-platform-db.sypchik.local" -> "hw-dev-u-db-db001.sypchik.local"
+          ~ name        = "netology-develop-platform-db" -> "hw-dev-u-db-db001"
+            # (1 unchanged attribute hidden)
+        }
+    }
+yandex_compute_instance.vm-b: Modifying... [id=epdu3tg2p63lu3kf0l9i]
+yandex_compute_instance.vm: Modifying... [id=fhmb6r7k98jqpf49lomk]
+yandex_compute_instance.vm: Modifications complete after 5s [id=fhmb6r7k98jqpf49lomk]
+yandex_compute_instance.vm-b: Modifications complete after 7s [id=epdu3tg2p63lu3kf0l9i]
+
+Apply complete! Resources: 0 added, 2 changed, 0 destroyed.
+
+Outputs:
+
+vm_details = {
+  "vm" = {
+    "external_ip" = "89.169.133.138"
+    "fqdn" = "hw-dev-u-cp-cp01.sypchik.local"
+    "name" = "hw-dev-u-cp-cp01"
+  }
+  "vm-b" = {
+    "external_ip" = "89.169.168.212"
+    "fqdn" = "hw-dev-u-db-db001.sypchik.local"
+    "name" = "hw-dev-u-db-db001"
+  }
+}
+```
+
+Задача 6
+
+Вывод о создании ВМ с помощью группировки параметров
+
+```
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm_details = {
+  "db" = {
+    "cores" = 2
+    "ip" = "51.250.110.76"
+    "memory" = 4
+    "metadata" = tomap({
+      "serial-port-enable" = "1"
+      "ssh-keys" = "ubuntu:ssh-rsa AAAAB3N sypchik@Mirror"
+    })
+    "name" = "db"
+  }
+  "web" = {
+    "cores" = 2
+    "ip" = "51.250.6.191"
+    "memory" = 2
+    "metadata" = tomap({
+      "serial-port-enable" = "1"
+      "ssh-keys" = "ubuntu:ssh-rsa AAAAB3 sypchik@Mirror"
+    })
+    "name" = "web"
+  }
+}
+```
+
+![image](https://github.com/user-attachments/assets/b0e5922c-2390-4f86-b29b-b530be34e4d5)
+
+
+![image](https://github.com/user-attachments/assets/76ba3eeb-4e3d-4147-b493-4bd503fd5d48)
+
+
+
