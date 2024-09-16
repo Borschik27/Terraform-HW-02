@@ -88,31 +88,31 @@ resource "yandex_compute_instance" "vm" {
 
 data "yandex_vpc_network" "net" {
   folder_id = var.folder_id
-  name      = "develop"
+  name      = var.vpc_name
 }
 
 resource "yandex_vpc_subnet" "subnet" {
   folder_id      = var.folder_id
   name           = var.vpc_name
-  v4_cidr_blocks = ["10.1.10.0/24"]
-  zone           = "ru-central1-a"
+  v4_cidr_blocks = var.default_cidr
+  zone           = var.default_zone
   network_id     = data.yandex_vpc_network.net.id
   route_table_id = yandex_vpc_route_table.rt.id
 }
 
 resource "yandex_vpc_gateway" "nat_gateway" {
   folder_id      = var.folder_id
-  name = "test-gateway"
+  name = var.gw_name
   shared_egress_gateway {}
 }
 
 resource "yandex_vpc_route_table" "rt" {
   folder_id      = var.folder_id
-  name       = "test-route-table"
+  name       = var.vpc_route_name
   network_id = data.yandex_vpc_network.net.id
 
   static_route {
-    destination_prefix = "0.0.0.0/0"
+    destination_prefix = var.prefix
     gateway_id         = yandex_vpc_gateway.nat_gateway.id
   }
 }

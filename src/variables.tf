@@ -175,3 +175,17 @@ variable "vms_resources" {
 variable "test" {
   type = list(map(list(string)))
 }
+
+variable "vpc_route_name" {
+  type        = string
+  description = "Route name"
+
+}
+variable "gw_name" {
+  type        = string
+  description = "Gateway name"
+}
+
+variable "prefix" {
+  type        = string
+}
